@@ -1,22 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV · Uriel Alejandro Martínez Martínez</title>
+  <style>
+    :root {
+      --bg: #eef1f5;
+      --paper: #ffffff;
+      --side: #16213e;
+      --side-text: #d9e0ec;
+      --accent: #2f80ed;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 40px 16px;
+    }
+
+    .cv {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(22, 33, 62, .15);
+    }
+
+    /* ---------- Barra lateral ---------- */
+    aside {
+      background: var(--side);
+      color: var(--side-text);
+      padding: 40px 28px;
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--accent), #56ccf2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      font-weight: 700;
+      color: #fff;
+      border: 4px solid rgba(255,255,255,.15);
+    }
+
+    aside h2 {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 30px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    aside ul { list-style: none; }
+    aside li { font-size: 14px; margin-bottom: 9px; word-break: break-word; }
+    aside li span { display: block; font-size: 11px; color: #8ea0bd; text-transform: uppercase; letter-spacing: 1px; }
+
+    .skill { margin-bottom: 12px; }
+    .skill p { font-size: 13px; margin-bottom: 4px; }
+    .bar { height: 6px; background: rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+    .bar div { height: 100%; background: linear-gradient(90deg, var(--accent), #56ccf2); border-radius: 4px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags span {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    /* ---------- Contenido principal ---------- */
+    main { padding: 44px 44px; }
+
+    header h1 { font-size: 34px; line-height: 1.15; color: var(--side); }
+    header .role {
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    section { margin-top: 32px; }
+
+    section h2 {
+      font-size: 18px;
+      color: var(--side);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    section h2::after { content: ""; flex: 1; height: 2px; background: var(--line); }
+
+    .item {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 20px;
+      border-left: 2px solid var(--line);
+    }
+    .item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 3px solid var(--accent);
+    }
+    .item h3 { font-size: 16px; }
+    .item .meta { font-size: 13px; color: var(--muted); margin: 2px 0 6px; }
+    .item p, .item li { font-size: 14px; }
+    .item ul { padding-left: 18px; }
+
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.08); border-color: var(--accent); }
+    .card h3 { font-size: 15px; color: var(--side); }
+    .card p { font-size: 13px; color: var(--muted); margin: 6px 0 10px; }
+    .card small { font-size: 12px; color: var(--accent); font-weight: 600; }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 800px) {
+      .cv { grid-template-columns: 1fr; }
+      main { padding: 32px 24px; }
+      .projects { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- Impresión ---------- */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .cv { box-shadow: none; border-radius: 0; }
+      aside, .bar div, .avatar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
 </head>
 <body>
-    <h1 style="color: chocolate;">Hola mundo</h1>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    <p>Uriel Alex</p>
-    
+  <div class="cv">
+
+    <aside>
+      <div class="avatar">UM</div>
+
+      <h2>Contacto</h2>
+      <ul>
+        <li><span>Correo</span>tu.correo@ejemplo.com</li>
+        <li><span>Teléfono</span>+52 461 000 0000</li>
+        <li><span>Ubicación</span>Celaya, Guanajuato, México</li>
+        <li><span>GitHub</span>github.com/tu-usuario</li>
+        <li><span>LinkedIn</span>linkedin.com/in/tu-usuario</li>
+      </ul>
+
+      <h2>Habilidades</h2>
+      <div class="skill"><p>JavaScript / TypeScript</p><div class="bar"><div style="width:85%"></div></div></div>
+      <div class="skill"><p>PHP / Laravel</p><div class="bar"><div style="width:80%"></div></div></div>
+      <div class="skill"><p>React / Next.js</p><div class="bar"><div style="width:80%"></div></div></div>
+      <div class="skill"><p>Node.js / Express</p><div class="bar"><div style="width:75%"></div></div></div>
+      <div class="skill"><p>SQL (MySQL, PostgreSQL)</p><div class="bar"><div style="width:75%"></div></div></div>
+      <div class="skill"><p>Flutter / Dart</p><div class="bar"><div style="width:65%"></div></div></div>
+
+      <h2>Herramientas</h2>
+      <div class="tags">
+        <span>Git</span><span>Linux</span><span>Apache</span><span>Supabase</span>
+        <span>Vercel</span><span>Coolify</span><span>Docker</span><span>Grafana</span>
+        <span>Prometheus</span><span>OAuth 2.0</span><span>Swagger</span>
+      </div>
+
+      <h2>Idiomas</h2>
+      <ul>
+        <li>Español — Nativo</li>
+        <li>Inglés — Intermedio (B1)</li>
+      </ul>
+    </aside>
+
+    <main>
+      <header>
+        <h1>Uriel Alejandro Martínez Martínez</h1>
+        <p class="role">Desarrollador Web Full Stack</p>
+      </header>
+
+      <section>
+        <h2>Perfil</h2>
+        <p>
+          Estudiante de Ingeniería en Sistemas Computacionales con experiencia práctica en el diseño
+          y desarrollo de APIs REST, aplicaciones web y móviles. Enfocado en arquitecturas basadas en
+          servicios, autenticación segura, despliegue en la nube y monitoreo de servidores.
+          Me gusta trabajar en equipo con metodologías ágiles y aprender tecnologías nuevas.
+        </p>
+      </section>
+
+      <section>
+        <h2>Educación</h2>
+        <div class="item">
+          <h3>Ingeniería en Sistemas Computacionales</h3>
+          <p class="meta">Tecnológico Nacional de México, campus Celaya · 2021 – Actualidad</p>
+          <p>Número de control: 21031562</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Experiencia</h2>
+        <div class="item">
+          <h3>Scrum Master — Proyecto LostCampus</h3>
+          <p class="meta">Proyecto académico en equipo · 2026</p>
+          <ul>
+            <li>Coordinación de sprints, dailies y retrospectivas.</li>
+            <li>Gestión del backlog y seguimiento de entregables.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3>Desarrollador Backend — APIs REST</h3>
+          <p class="meta">Prácticas académicas · 2026</p>
+          <ul>
+            <li>APIs en PHP y Laravel con CRUD, autenticación por Bearer token y contratos OpenAPI.</li>
+            <li>Despliegue en Apache/MariaDB sobre Debian y monitoreo con Prometheus + Grafana.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Proyectos</h2>
+        <div class="projects">
+          <div class="card">
+            <h3>LostCampus</h3>
+            <p>Plataforma de objetos perdidos para el campus, basada en servicios.</p>
+            <small>Next.js · Express · Supabase</small>
+          </div>
+          <div class="card">
+            <h3>Linces ITC</h3>
+            <p>Consumo del API SII con bolsa de servicio social y residencias.</p>
+            <small>API REST · Backend propio</small>
+          </div>
+          <div class="card">
+            <h3>API Acortador de URLs</h3>
+            <p>API REST para acortar enlaces con estadísticas de uso.</p>
+            <small>PHP · MariaDB · Apache</small>
+          </div>
+          <div class="card">
+            <h3>App de Notas</h3>
+            <p>Aplicación móvil de notas con persistencia local.</p>
+            <small>Flutter · sqflite</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  </div>
 </body>
 </html>
